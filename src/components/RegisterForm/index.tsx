@@ -1,7 +1,10 @@
-import { FiUser } from "react-icons/fi";
+import { FiGithub, FiUser } from "react-icons/fi";
 import CustomInput from "../CustomInput";
 import { CiMail } from "react-icons/ci";
 import { GoLock } from "react-icons/go";
+import CustomButton from "../CustomButton";
+import { FaChrome } from "react-icons/fa";
+import Link from "next/link";
 
 export default function RegisterForm(){
     return (
@@ -48,7 +51,40 @@ export default function RegisterForm(){
                         icon={<GoLock />}
                         required={true}
                     />
-                    <CustomButtom
+                    <CustomButton 
+                        type="submit"
+                        className="h-[40px]"
+                    >
+                        Criar conta
+                    </CustomButton>
+                    <div className="w-full flex items-center justify-center">
+                        <div className="w-[45%] h-[1px] bg-[#2c313a]"></div>
+                        <p className="text-[12px] text-gray-400">OU</p>
+                        <div className="w-[45%] h-[1px] bg-[#2c313a]"></div>
+                    </div>
+
+                    <div className="space-y-3">
+                        <CustomButton variant="outline" className="text-sm hover:bg-[#F9AF32]">
+                            <FiGithub size={20}/>
+                            Continuar com Github
+                        </CustomButton>
+                        <CustomButton variant="outline" className="text-sm hover:bg-[#4487F4]">
+                            <FaChrome size={20}/>
+                            Continuar com Google
+                        </CustomButton>
+                    </div>
+
+                    <div className="text-center mt-6 flex items-center justify-center gap-2">
+                        <p className="text-sm text-gray-400">
+                            Já tem uma conta?
+                        </p>
+                        <Link
+                            href="/"
+                            className="text-sm text-[#5593f7] hover:text-[#5593f7]/80 transition-colors"
+                        >
+                            Fazer login
+                        </Link>
+                    </div>
                 </form>
             </div>
          </div>
