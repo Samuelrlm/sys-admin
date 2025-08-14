@@ -1,5 +1,9 @@
+import PageWrapper from "@/components/PageWrapper";
+
 export default function Home(){
     return (
-        <p>Olá mundo!</p>
+        <PageWrapper>
+            <p>Olá mundo!</p>
+        </PageWrapper>
     )
 }

@@ -1,5 +1,5 @@
 type CustomButtonProps = {
-    variant?: "primary" | "outline",
+    variant?: "primary" | "outline" | "ghost",
     type?: "submit" | "button" | "reset",
     className?: string,
     children: React.ReactNode
@@ -23,6 +23,8 @@ export default function CustomButton({
                 return `border border-[#2c313a]/50 rounded-xl
                         bg-[#111418] h-[45px] text-[#F1F2F3] flex items-center
                         justify-center gap-4 transition-all duration-300 ease-in-out cursor-pointer`
+            case "ghost":
+                return `bg-transparent text-[#F1F2F3]`
             default:
                 return ""
         }
