@@ -17,7 +17,7 @@ export default function CustomInput({label, type, placeholder, required, icon}: 
     }
 
     return (
-        <div className="space-y-2">
+        <div className="space-y-2 w-full">
             {label && (
                 <label htmlFor={type} className="text-sm font-medium text-[#F1F2F3]">
                     {label}

@@ -2,14 +2,16 @@ type CustomButtonProps = {
     variant?: "primary" | "outline" | "ghost",
     type?: "submit" | "button" | "reset",
     className?: string,
-    children: React.ReactNode
+    children: React.ReactNode,
+    width?: string
 }
 
 export default function CustomButton({ 
     variant = "primary", 
     type = "button", 
     className,
-    children
+    children,
+    width = "w-full"
 }: CustomButtonProps){
 
     //switch case
@@ -24,7 +26,7 @@ export default function CustomButton({
                         bg-[#111418] h-[45px] text-[#F1F2F3] flex items-center
                         justify-center gap-4 transition-all duration-300 ease-in-out cursor-pointer`
             case "ghost":
-                return `bg-transparent text-[#F1F2F3]`
+                return `bg-transparent text-[#F1F2F3] flex items-center justify-center`
             default:
                 return ""
         }
@@ -33,7 +35,7 @@ export default function CustomButton({
     return (
         <button
          type={type}
-         className={`w-full rounded-lg text-lg font-medium 
+         className={`${width} rounded-lg text-lg font-medium 
             ${getStyles()} ${className}`}>
             {children}
         </button>
