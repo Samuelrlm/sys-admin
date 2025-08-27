@@ -3,6 +3,7 @@ import { Badge } from "../Badge";
 import CustomButton from "../CustomButton";
 import { CiHeart } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
+import { FaStar } from "react-icons/fa";
 
 interface ProductCardProps {
     product: Product;
@@ -70,8 +71,38 @@ export default function ProductCard({ product }: ProductCardProps) {
 
                     <div className="flex items-center gap-1">
                         <div className="flex items-center">
-                            
+                            {[...Array(5)].map((_, index) => {
+                                return (
+                                    <FaStar
+                                        size={12}
+                                        key={index}
+                                        className={`
+                                            ${index < Math.floor(product.rating) ? 
+                                                "fill-yellow-500" : 
+                                                ""}`
+                                            }
+                                    />
+                                )
+                            })}
                         </div>
+                        <span className="text-xs">({product.reviews})</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                        <span className="text-lg font-bold text-[#5593f7]">
+                            {product.price.toLocaleString("pt-BR", {
+                                style: "currency",
+                                currency: "BRL"
+                            })}
+                        </span>
+                        {product.originalPrice && (
+                            <span className="text-sm line-through">
+                                {product.originalPrice.toLocaleString("pt-BR", {
+                                    style: "currency",
+                                    currency: "BRL"
+                                })}
+                            </span>
+                        )}
                     </div>
                 </div>
             </div>
