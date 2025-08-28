@@ -1,3 +1,4 @@
+import CustomButton from "../CustomButton";
 import CustomInput from "../CustomInput";
 
 export default function NewsletterSection() {
@@ -14,6 +15,11 @@ export default function NewsletterSection() {
                     placeholder="Seu melhor email"
                     type="email"
                 />
+                <CustomButton
+                    className="w-[150px] text-sm" 
+                >
+                    Inscreva-se
+                </CustomButton>
             </div>
         </section>
     )
