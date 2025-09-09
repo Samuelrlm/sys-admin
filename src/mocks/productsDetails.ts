@@ -31,6 +31,7 @@ export const productsDetailsMocks = [
         "Sistema": "iOS 17"
       },
       shipping: "Entrega grátis para todo o Brasil",
-      warranty: "1 ano de garantia Apple"
+      warranty: "1 ano de garantia Apple",
+      return: "30 dias para troca e devolução"
     }
 ];

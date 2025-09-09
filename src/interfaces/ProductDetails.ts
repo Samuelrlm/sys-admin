@@ -14,4 +14,5 @@ export interface ProductDetails {
     specifications: Record<string, string>;
     shipping: string;
     warranty: string;
+    return: string
 }
