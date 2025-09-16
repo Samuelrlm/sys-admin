@@ -8,7 +8,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <ToastContainer
         position="top-right"
         autoClose={5000}
-        theme="dark"
+        theme="colored"
         pauseOnHover
       />
       <Component {...pageProps} />

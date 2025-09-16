@@ -4,6 +4,7 @@ import { Product } from "@/interfaces/Product";
 import ProductCard from "../ProductCard";
 import instance from "@/services/api";
 import requestApi from "@/helpers/requestApi";
+import customToast from "@/helpers/customToast";
 
 export default function ProductsSection(){
     const [products, setProducts] = useState<Product[]>([])
@@ -19,6 +20,9 @@ export default function ProductsSection(){
             setProducts(response.data)
            } catch (error) {
             console.error(error)
+            customToast.error({
+                message: "Erro ao buscar produtos"
+            })
            }
         }
 

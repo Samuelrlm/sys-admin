@@ -4,7 +4,9 @@ import ProductImages from "@/components/ProductImages";
 import ProductInfo from "@/components/ProductInfo";
 import ProductSkeleton from "@/components/Skeletons/ProductSkeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import customToast from "@/helpers/customToast";
 import getProductMock from "@/helpers/getProductMock";
+import requestApi from "@/helpers/requestApi";
 import { ProductDetails } from "@/interfaces/ProductDetails";
 import { useRouter } from "next/router"
 import { useEffect, useState } from "react";
@@ -19,17 +21,23 @@ export default function Product() {
         async function fetchProduct(){
             setLoading(true)
 
+           try {
             if(id){
-                const product = await getProductMock({ id: Number(id)})
-
-                if(product){
-                    setProduct(product)
-                }
+                const response = await requestApi({
+                    url: `/products/${id}`,
+                    method: "GET"
+                })
+    
+                setProduct(response.data)
             }
-
-            // setTimeout(() => {
-                setLoading(false)
-            // }, 3000)
+           } catch (error) {
+            console.error(error)
+            customToast.error({
+                message: "Erro ao buscar produto"
+            })
+           } finally {
+            setLoading(false)
+           }
         }
 
         fetchProduct()
@@ -84,7 +92,7 @@ export default function Product() {
                                     </h3>
                                     <div className="space-y-3">
                                         {
-                                          Object.entries(product.specifications).map(([key, value]) => {
+                                          Object.entries(product?.specifications || {} ).map(([key, value]) => {
                                             return (
                                                 <div 
                                                     key={key}
