@@ -1,6 +1,6 @@
 import Breadcrumb from "@/components/Breadcrumb";
 import CustomButton from "@/components/CustomButton";
-import PageWrapper from "@/components/PageWrapper";
+import { PageWrapper } from "@/components/PageWrapper";
 import ProductImages from "@/components/ProductImages";
 import ProductInfo from "@/components/ProductInfo";
 import ProductReviews from "@/components/ProductReviews";
@@ -49,25 +49,31 @@ export default function Product() {
 
     if(!product){
         return (
-            <PageWrapper>
-                <div className="flex flex-col items-center justify-center">
-                    <h1 className="text-2xl font-bold mb-4">
-                        Produto não encontrado
-                    </h1>
-                    <Link href="/">
-                        <CustomButton
-                            className="h-[45px] px-4"
-                        >
-                            Voltar para a home
-                        </CustomButton>
-                    </Link>
-                </div>
-            </PageWrapper>
+            <PageWrapper.Root>
+                <PageWrapper.Header />
+
+                <PageWrapper.Content>
+                    <div className="flex flex-col items-center justify-center">
+                        <h1 className="text-2xl font-bold mb-4">
+                            Produto não encontrado
+                        </h1>
+                        <Link href="/">
+                            <CustomButton
+                                className="h-[45px] px-4"
+                            >
+                                Voltar para a home
+                            </CustomButton>
+                        </Link>
+                    </div>
+                </PageWrapper.Content>
+            </PageWrapper.Root>
         )
     }
 
     return (
-        <PageWrapper>
+        <PageWrapper.Root>
+            <PageWrapper.Header />
+            <PageWrapper.Content>
             {loading ? <ProductSkeleton /> : (
                 <>
                     <Breadcrumb
@@ -149,7 +155,7 @@ export default function Product() {
                     </Tabs>
                 </>
             )}
-            
-        </PageWrapper>
+            </PageWrapper.Content>
+        </PageWrapper.Root>
     )
 }
