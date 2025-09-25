@@ -5,16 +5,25 @@ import { CiHeart } from "react-icons/ci";
 import { FiShoppingCart } from "react-icons/fi";
 import { FaStar } from "react-icons/fa";
 import StarsRating from "../StarsRating";
+import { useRouter } from "next/navigation";
 
 interface ProductCardProps {
     product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+    const router = useRouter();
+    
+    function handleClick() {
+        router.push(`/products/${product.id}`)
+    }
+
     return (
-        <div className="group overflow-hidden hover:shadow-lg transition-all
+        <div 
+        onClick={handleClick}
+        className="group overflow-hidden hover:shadow-lg transition-all
         duration-300 backdrop-blur-sm rounded-lg 
-        bg-[#181C22]">
+        bg-[#181C22] cursor-pointer">
             <div className="relative aspect-square overflow-hidden">
                 <img 
                     src={product.image} 
