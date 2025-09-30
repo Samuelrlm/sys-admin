@@ -1,6 +1,8 @@
 import AsideFilters from "@/components/AsideFilters";
 import CustomInput from "@/components/CustomInput";
 import { PageWrapper } from "@/components/PageWrapper";
+import ProductsList from "@/components/ProductsList";
+import ProductsSection from "@/components/ProductsSection";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { IoSearch } from "react-icons/io5";
 
@@ -38,6 +40,7 @@ export default function Products() {
 
                 <div className="flex gap-8">
                     <AsideFilters />
+                    <ProductsList />
                 </div>
 
             </PageWrapper.Content>

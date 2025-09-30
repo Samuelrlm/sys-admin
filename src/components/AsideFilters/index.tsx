@@ -1,3 +1,4 @@
+import formatCurrency from "@/helpers/formatCurrency"
 import CustomButton from "../CustomButton"
 import { Slider } from "../ui/slider"
 
@@ -13,7 +14,7 @@ export default function AsideFilters(){
     
     return (
         <aside className="w-80 flex shrink-0">
-            <div className="rounded-lg border border-[#343942] bg-[#181B20]">
+            <div className="rounded-lg border border-[#343942] bg-[#181B20] w-full">
                 <div className="p-6">
                     <h3 className="text-lg font-semibold mb-6">
                         Filtros
@@ -28,7 +29,6 @@ export default function AsideFilters(){
                                             key={category.id}
                                             variant={category.id === 1 ? "primary" : "ghost"}
                                             className="w-full justify-start h-[40px] text-sm pl-6"
-                                            width="min-w-[300px]"
                                         >
                                             {category.name}
                                         </CustomButton>
@@ -46,8 +46,29 @@ export default function AsideFilters(){
                                     className="w-full"
                                 />
                                 <div className="flex justify-between text-sm">
-                                    
+                                    <span>{formatCurrency(100)}</span>
+                                    <span>{formatCurrency(20000)}</span>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 className="font-medium mb-3">Avaliação Mínima</h3>
+                            <div className="space-y-2">
+                                {
+                                    [0, 3, 4, 4.5].map((rating) => {
+                                        return (
+                                            <CustomButton
+                                                key={rating}
+                                                variant="ghost"
+                                                className={`w-full justify-start h-[40px] text-sm pl-6 hover:bg-[#5593f7]
+                                                ${rating === 0 && "bg-[#5593f7]"}`}
+                                            >
+                                                {rating === 0 ? "Todas" : `${rating}+ estrelas`}
+                                            </CustomButton>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
