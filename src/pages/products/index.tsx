@@ -4,9 +4,21 @@ import { PageWrapper } from "@/components/PageWrapper";
 import ProductsList from "@/components/ProductsList";
 import ProductsSection from "@/components/ProductsSection";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 
 export default function Products() {
+    const router = useRouter()
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+
+        if(!token){
+            router.push("/login")
+        }
+    }, [])
+
     return (
         <PageWrapper.Root>
             <PageWrapper.Header />

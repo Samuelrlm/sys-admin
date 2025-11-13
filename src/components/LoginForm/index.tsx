@@ -3,16 +3,53 @@ import { CiMail } from "react-icons/ci";
 import { GoLock } from "react-icons/go";
 import { FiGithub } from "react-icons/fi";
 import { PiGoogleChromeLogo } from "react-icons/pi";
-import { IoEyeOutline } from "react-icons/io5";
 import { useState } from "react";
-import { IoEyeOffOutline } from "react-icons/io5";
 import CustomInput from "../CustomInput";
+import customToast from "@/helpers/customToast";
+import requestApi from "@/helpers/requestApi";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm(){
-    const [showPassword, setShowPassword] = useState(false)
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
-    function handleShowPassword(){
-        setShowPassword(!showPassword)
+    const router = useRouter()
+
+    async function handleLogin(event: React.FormEvent<HTMLFormElement>){
+        event.preventDefault()
+
+        if(!email || !password){
+            customToast.error({
+                message: "Preencha todos os campos"
+            })
+            return
+        }
+        
+        try {
+            const response = await requestApi({
+                url: "/login",
+                method: "POST",
+                data: {
+                    email,
+                    password
+                }
+            })
+
+            //set local storage
+            localStorage.setItem("token", response.data.token)
+            localStorage.setItem("user", JSON.stringify(response.data.user))
+
+            customToast.success({
+                message: "Login realizado com sucesso"
+            })
+
+            router.push("/")
+        } catch (error: any) {
+            console.error(error)
+            customToast.error({
+                message: error.response.data.error
+            })
+        }
     }
 
     return (
@@ -29,10 +66,12 @@ export default function LoginForm(){
                         </p>
                     </div>
                     <div className="pt-0 p-6 space-y-6">
-                        <form onSubmit={() => {}} className="space-y-4">
+                        <form onSubmit={handleLogin} className="space-y-4">
                             <CustomInput 
                                 label="Email"
                                 type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="seu@email.com"
                                 icon={<CiMail />}
                                 required={true}
@@ -41,6 +80,8 @@ export default function LoginForm(){
                             <CustomInput
                                 label="Senha"
                                 type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 placeholder="••••••••"
                                 icon={<GoLock />}
                                 required={true}
