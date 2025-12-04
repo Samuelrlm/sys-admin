@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   devIndicators: false,
   images: {
-    domains: ["images.unsplash.com"],
+    domains: ["images.unsplash.com", "sys-admin-fly.s3.us-east-2.amazonaws.com"],
     remotePatterns: [
       {
         protocol: "https",
